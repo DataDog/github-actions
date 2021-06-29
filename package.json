@@ -1,0 +1,29 @@
+{
+  "name": "actions",
+  "version": "0.0.1",
+  "private": true,
+  "description": "GitHub actions to manage generation pipeline",
+  "scripts": {
+    "build": "tsc --build",
+    "lint": "eslint --report-unused-disable-directives --max-warnings=0 . --ext .js,.ts",
+    "lint-fix": "eslint --report-unused-disable-directives --max-warnings=0 . --ext .js,.ts --fix",
+    "removeNPMAbsolutePaths": "removeNPMAbsolutePaths . --force"
+  },
+  "ava": {
+    "typescript": {
+      "rewritePaths": {
+        "src/": "lib/"
+      }
+    }
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/github": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^15.12.5",
+    "removeNPMAbsolutePaths": "2.0.0",
+    "typescript": "^3.7.5"
+  }
+}

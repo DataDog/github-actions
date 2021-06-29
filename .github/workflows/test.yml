@@ -1,0 +1,19 @@
+name: "Test actions"
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test-post-status-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - id: status
+        uses: ./post-status-check
+        with:
+          context: action
+          pull-request: ${{ github.event.pull_request.number }}
+          owner: ${{ github.repository_owner }}
+          repo: github-actions
