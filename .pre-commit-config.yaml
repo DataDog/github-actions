@@ -1,0 +1,24 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.5.0
+    hooks:
+      - id: check-merge-conflict
+      - id: trailing-whitespace
+  - repo: https://github.com/adrienverge/yamllint.git
+    rev: v1.23.0
+    hooks:
+      - id: yamllint
+  - repo: local
+    hooks:
+      - id: build
+        name: lib folder must be build
+        entry: npm run build
+        language: system
+        pass_filenames: false
+        files: '^src/.*'
+      - id: check-licenses
+        name: licenses must be up-to-date
+        entry: npm run check-licenses
+        language: system
+        pass_filenames: false
+        files: '^package.*.json$'

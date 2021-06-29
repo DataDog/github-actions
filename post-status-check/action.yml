@@ -11,7 +11,7 @@ inputs:
     required: false
   repo:
     description: Name of the repository where the status should be created
-    default: 'datadog-api-spec'
+    default: "datadog-api-spec"
     required: false
   pull-request:
     description: Pull-request number
@@ -21,12 +21,12 @@ inputs:
     required: true
   status:
     description: A valid status value for the commit
-    default: 'success'
+    default: "success"
     required: false
 outputs:
   result:
     description: "Commit status details"
     value: ${{ steps.status.result }}
 runs:
-  using: 'node12'
-  main: '../lib/post-status-check.js'
+  using: "node12"
+  main: "../lib/post-status-check.js"
