@@ -1,0 +1,23 @@
+name: Test review
+
+on:
+  pull_request:
+    branches:
+      - master
+    types: ["review_requested", "synchronize", "opened", "reopened"]
+  pull_request_review:
+    types:
+      - submitted
+      - dismissed
+
+jobs:
+  test-post-review-status:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - id: review
+        uses: ./post-review-status
+        with:
+          pull-request: ${{ github.event.pull_request.number }}
+          owner: ${{ github.repository_owner }}
+          repo: github-actions
