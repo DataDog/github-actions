@@ -1,10 +1,11 @@
 {
-  "name": "actions",
+  "name":  "actions",
   "version": "0.0.1",
   "private": true,
   "description": "GitHub actions to manage generation pipeline",
   "scripts": {
     "build": "tsc --build",
+    "check-licenses": "node bin/check-licenses.js",
     "lint": "eslint --report-unused-disable-directives --max-warnings=0 . --ext .js,.ts",
     "lint-fix": "eslint --report-unused-disable-directives --max-warnings=0 . --ext .js,.ts --fix",
     "removeNPMAbsolutePaths": "removeNPMAbsolutePaths . --force"

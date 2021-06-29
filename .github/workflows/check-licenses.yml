@@ -1,0 +1,17 @@
+name: "Test actions"
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  license-3rdparty:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "12"
+      - run: npm i
+      - run: npm run check-licenses
