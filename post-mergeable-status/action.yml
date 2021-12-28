@@ -1,0 +1,25 @@
+name: Post mergeable status
+description: Create status check in target repository based on the mergeability of the pull request
+inputs:
+  github-token:
+    description: A valid GitHub token that can create status check in target repository
+    default: ${{ github.token }}
+    required: false
+  owner:
+    description: Name of the repository owner
+    default: ${{ github.repository_owner }}
+    required: false
+  repo:
+    description: Name of the repository where the status should be created
+    default: "datadog-api-spec"
+    required: false
+  pull-request:
+    description: Pull-request number
+    required: false
+outputs:
+  result:
+    description: "Commit mergeability"
+    value: ${{ steps.meargeable.result }}
+runs:
+  using: "node12"
+  main: "../lib/post-mergeable-status.js"

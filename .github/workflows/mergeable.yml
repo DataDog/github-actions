@@ -1,0 +1,19 @@
+name: "Test post-mergeable-status action"
+
+on:
+  pull_request_review:
+    branches:
+      - master
+    types: ["submitted", "edited", "dismissed"]
+
+jobs:
+  test-post-mergeable-statuss:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - id: mergeable
+        uses: ./post-mergeable-status
+        with:
+          pull-request: ${{ github.event.pull_request.number }}
+          owner: ${{ github.repository_owner }}
+          repo: github-actions
