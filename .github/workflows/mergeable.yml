@@ -1,13 +1,17 @@
 name: "Test post-mergeable-status action"
 
 on:
+  pull_request:
+    branches:
+      - master
+    types: [ "review_requested", "synchronize", "opened", "reopened" ]
   pull_request_review:
     branches:
       - master
     types: ["submitted", "edited", "dismissed"]
 
 jobs:
-  test-post-mergeable-statuss:
+  test-post-mergeable-status:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
