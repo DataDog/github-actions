@@ -29,13 +29,17 @@ async function main(): Promise<any> {
                 }
             }
         }`;
+    const headers = {
+        accept: "application/vnd.github.merge-info-preview+json",
+    }
 
     let maxRetries:number = 5;
     let success:boolean = false;
     let status: "pending" | "error" | "failure" | "success" = "pending";
 
     while (!success && maxRetries > 0) {
-        let { node: { mergeStateStatus: stateStatus } } = await github.graphql(query, {});
+        // @ts-ignore
+        let { node: { mergeStateStatus: stateStatus } } = await github.graphql({query: query, headers: headers}, {});
         if (stateStatus === "UNKNOWN") {
             // sleep for a second
             setTimeout(() => {maxRetries-=1}, 1000);
