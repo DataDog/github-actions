@@ -15,17 +15,17 @@ async function main(): Promise<any> {
   if (pr_num == "")
     pr_num = context.payload.pull_request!.head.ref.split("/")[2] as string;
 
-  const { data: pr } = await github.pulls.get({
+  const { data: pr } = await github.rest.pulls.get({
     owner: owner,
     repo: repo,
     pull_number: +pr_num,
   });
-  const { data: jobs } = await github.actions.listJobsForWorkflowRun({
+  const { data: jobs } = await github.rest.actions.listJobsForWorkflowRun({
     owner: context.repo.owner,
     repo: context.repo.repo,
     run_id: context.runId,
   });
-  return github.repos.createCommitStatus({
+  return github.rest.repos.createCommitStatus({
     owner: owner,
     repo: repo,
     sha: pr.head.sha,

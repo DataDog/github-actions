@@ -15,7 +15,7 @@ async function main(): Promise<any> {
   if (pr_num == "")
     pr_num = context.payload.pull_request!.head.ref.split("/")[2] as string;
 
-  const { data: pr } = await github.pulls.get({
+  const { data: pr } = await github.rest.pulls.get({
     owner: owner,
     repo: repo,
     pull_number: +pr_num,
@@ -49,7 +49,7 @@ async function main(): Promise<any> {
       status = "failure";
     }
   }
-  return github.repos.createCommitStatus({
+  return github.rest.repos.createCommitStatus({
     owner: owner,
     repo: repo,
     sha: pr.head.sha,
