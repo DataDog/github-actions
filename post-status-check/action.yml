@@ -28,5 +28,5 @@ outputs:
     description: "Commit status details"
     value: ${{ steps.status.result }}
 runs:
-  using: "node12"
+  using: "node16"
   main: "../lib/post-status-check.js"
