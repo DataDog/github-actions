@@ -2,4 +2,4 @@
 # Rules are matched bottom-to-top, so one team can own subdirectories
 # and another the rest of the directory.
 
-*                                                       @DataDog/integrations-tools-and-libraries
+*                                                       @DataDog/api-clients
