@@ -12,4 +12,4 @@ inputs:
     required: true
 runs:
   using: "node20"
-  main: "../lib/merge-readiness-notification.js"
+  main: "../lib/external-actor-on-team-approved-pr.js"
