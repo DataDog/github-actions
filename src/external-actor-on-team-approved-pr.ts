@@ -7,7 +7,7 @@ main().catch(handleError);
 
 async function main(): Promise<any> {
   const http: httpm.HttpClient = new httpm.HttpClient(
-    "merge-readiness-notification"
+    "external-actor-on-team-approved-pr"
   );
 
   if (context.payload.pull_request == null) {
