@@ -1,5 +1,5 @@
 {
-  "name":  "actions",
+  "name": "actions",
   "version": "0.0.1",
   "private": true,
   "description": "GitHub actions to manage generation pipeline",
@@ -20,7 +20,8 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@actions/core": "^1.10.0",
-    "@actions/github": "^5.1.1"
+    "@actions/github": "^5.1.1",
+    "@actions/http-client": "^2.2.0"
   },
   "devDependencies": {
     "@types/node": "^15.12.5",

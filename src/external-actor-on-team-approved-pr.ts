@@ -7,15 +7,15 @@ main().catch(handleError);
 
 async function main(): Promise<any> {
   const http: httpm.HttpClient = new httpm.HttpClient(
-    "external-actor-on-team-approved-pr"
+    "actions/external-actor-on-team-approved-pr"
   );
 
   if (context.payload.pull_request == null) {
-    console.log("No pull request found in the context");
+    core.debug("No pull request found in the context");
     return;
   }
 
-  const apiToken = core.getInput("api-token", { required: true });
+  const apiToken = core.getInput("github-token", { required: true });
   const slackWebhookUrl = core.getInput("slack-webhook-url", {
     required: true,
   });
@@ -29,13 +29,13 @@ async function main(): Promise<any> {
     team_slug: teamSlug,
   });
   const teamMemberLogins = members.map((member) => member.login);
-  console.log(`Team members retrieved: ${teamMemberLogins.join(", ")}`);
+  core.debug(`Team members retrieved: ${teamMemberLogins.join(", ")}`);
 
   // If the actor is a team member,
   // skip the Slack notification
   const actor = context.actor;
   if (teamMemberLogins.includes(actor)) {
-    console.log(
+    core.debug(
       `Actor is a team member (${actor}), skipping Slack notification.`
     );
     return;
@@ -60,7 +60,7 @@ async function main(): Promise<any> {
       const approverLogin = review.user.login;
       if (teamMemberLogins.includes(approverLogin)) {
         isApproved = true;
-        console.log(
+        core.debug(
           `The PR is approved by a team member: ${approverLogin}. Notifying Slack ...`
         );
         break;
@@ -71,7 +71,7 @@ async function main(): Promise<any> {
   // If no one on the team has approved it yet,
   // skip the Slack notification
   if (!isApproved) {
-    console.log(
+    core.debug(
       "No team members have approved the PR yet, skipping Slack notification."
     );
     return;
@@ -91,7 +91,7 @@ async function main(): Promise<any> {
     prAuthor: pullRequest.user?.login || "unknown",
   };
   const slackResponse = await http.postJson(slackWebhookUrl, body);
-  console.log("Response code from Slack:", slackResponse.statusCode);
+  core.debug(`Response code from Slack: ${slackResponse.statusCode}`);
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
