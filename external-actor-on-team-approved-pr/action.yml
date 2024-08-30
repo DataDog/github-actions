@@ -1,0 +1,15 @@
+name: Merge readiness notification
+description: Send a Slack notification when a team-reviewed PR is ready to merge.
+inputs:
+  github-token:
+    description: A fine-grained GitHub token for retrieving PR details and team members with the GitHub API.
+    required: true
+  slack-webhook-url:
+    description: The URL of the Slack webhook to send messages to.
+    required: true
+  team-slug:
+    description: The slug of the team who must approve the PR before merge (e.g. "documentation").
+    required: true
+runs:
+  using: "node20"
+  main: "../lib/external-actor-on-team-approved-pr.js"

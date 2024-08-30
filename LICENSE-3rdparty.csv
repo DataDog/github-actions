@@ -1,6 +1,7 @@
 Component,Licence,Copyright
 @actions/core,MIT,Copyright 2019 GitHub
 @actions/github,MIT,Copyright 2019 GitHub
+@actions/http-client,MIT,Copyright 2019 GitHub
 @types/node,MIT,Copyrights are respective of each contributor listed at the beginning of each definition file.
 removeNPMAbsolutePaths,MIT,Copyright (c) 2016 Juanjo Diaz
 typescript,Apache-2.0,Copyright (c) Microsoft Corporation.
