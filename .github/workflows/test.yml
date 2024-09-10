@@ -2,6 +2,7 @@ name: "Test actions"
 
 permissions:
   contents: read
+  statuses: read
 
 on:
   pull_request:
