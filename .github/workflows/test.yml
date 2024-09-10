@@ -2,6 +2,7 @@ name: "Test actions"
 
 permissions:
   contents: write
+  checks: write
   statuses: read
 
 on:
