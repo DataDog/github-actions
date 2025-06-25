@@ -10,6 +10,7 @@ async function main(): Promise<any> {
 
   const owner = core.getInput("owner");
   const repo = core.getInput("repo");
+  const checkName = core.getInput("check-name");
 
   let pr_num = core.getInput("pull-request");
   if (pr_num == "")
@@ -49,6 +50,8 @@ async function main(): Promise<any> {
       status = "failure";
     }
   }
+  const contextName = checkName ? checkName : context.repo.repo;
+  
   return github.rest.repos.createCommitStatus({
     owner: owner,
     repo: repo,
@@ -57,10 +60,10 @@ async function main(): Promise<any> {
     target_url: `https://github.com/${context.repo.owner}/${
       context.repo.repo
     }/pull/${context.payload.pull_request!.number}`,
-    description: `status of ${context.repo.owner}/${context.repo.repo}#${
+    description: `status of ${context.repo.owner}/${contextName}#${
       context.payload.pull_request!.number
     }`,
-    context: `${context.repo.repo}/review`,
+    context: `${contextName}/review`,
   });
 }
 

@@ -27,3 +27,16 @@ jobs:
           pull-request: ${{ github.event.pull_request.number }}
           owner: ${{ github.repository_owner }}
           repo: github-actions
+          check-name: review
+
+  test-post-typescript-v2-review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - id: security-review
+        uses: ./post-review-status
+        with:
+          pull-request: ${{ github.event.pull_request.number }}
+          owner: ${{ github.repository_owner }}
+          repo: github-actions
+          check-name: typescript-v2
