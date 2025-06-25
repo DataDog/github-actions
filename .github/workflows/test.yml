@@ -23,15 +23,15 @@ jobs:
           owner: ${{ github.repository_owner }}
           repo: github-actions
 
-    test-post-status-check-feature-branch:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v2
-        - id: status
-          uses: ./post-status-check
-          with:
-            context: action
-            pull-request: ${{ github.event.pull_request.number }}
-            owner: ${{ github.repository_owner }}
-            repo: github-actions
-            check-name: github-actions/important-feature-branch
+  test-post-status-check-feature-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - id: status
+        uses: ./post-status-check
+        with:
+          context: action
+          pull-request: ${{ github.event.pull_request.number }}
+          owner: ${{ github.repository_owner }}
+          repo: github-actions
+          check-name: github-actions/important-feature-branch
