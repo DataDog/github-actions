@@ -16,6 +16,9 @@ inputs:
   pull-request:
     description: Pull-request number
     required: false
+  context:
+      description: Name of the status check. If none is provided, `{repository-name/review}` will be used
+      required: false
 outputs:
   result:
     description: "Commit status details"
