@@ -28,7 +28,7 @@ jobs:
           owner: ${{ github.repository_owner }}
           repo: github-actions
 
-  test-post-typescript-v2-review:
+  test-post-status-check-feature-branch:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -38,4 +38,4 @@ jobs:
           pull-request: ${{ github.event.pull_request.number }}
           owner: ${{ github.repository_owner }}
           repo: github-actions
-          check-name: typescript-v2
+          check-name: github-actions/important-feature-branch

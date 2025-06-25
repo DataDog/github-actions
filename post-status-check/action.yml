@@ -19,6 +19,9 @@ inputs:
   context:
     description: Name of the status check
     required: true
+  check-name:
+    description: Prefix for the status check name. If not provided, the repository name will be used.
+    required: false
   status:
     description: A valid status value for the commit
     default: "success"

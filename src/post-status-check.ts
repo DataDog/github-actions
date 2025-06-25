@@ -10,6 +10,7 @@ async function main(): Promise<any> {
 
   const owner = core.getInput("owner");
   const repo = core.getInput("repo");
+  const checkName = core.getInput("check-name");
 
   let pr_num = core.getInput("pull-request");
   if (pr_num == "")
@@ -25,6 +26,9 @@ async function main(): Promise<any> {
     repo: context.repo.repo,
     run_id: context.runId,
   });
+  
+  const contextName = checkName || context.repo.repo;
+  
   return github.rest.repos.createCommitStatus({
     owner: owner,
     repo: repo,
@@ -40,7 +44,7 @@ async function main(): Promise<any> {
       jobs.jobs[0].id
     }`,
     description: context.workflow,
-    context: `${context.repo.repo}/${core.getInput("context")}`,
+    context: `${contextName}/${core.getInput("context")}`,
   });
 }
 

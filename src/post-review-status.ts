@@ -50,7 +50,7 @@ async function main(): Promise<any> {
       status = "failure";
     }
   }
-  const contextName = checkName ? checkName : context.repo.repo;
+  const contextName = checkName || context.repo.repo;
   
   return github.rest.repos.createCommitStatus({
     owner: owner,
